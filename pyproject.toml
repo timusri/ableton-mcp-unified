@@ -1,0 +1,27 @@
+[project]
+name = "ableton-mcp-unified"
+version = "0.1.0"
+description = "MCP server and Remote Script for Ableton Live: 1-based indices, normalized parameters, generic Live Object Model access, UDP batch path."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Sumit Srivastava"}]
+dependencies = ["mcp[cli]>=1.3.0,<2"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-mock>=3.12"]
+
+[project.scripts]
+ableton-mcp-unified = "ableton_mcp.server:main"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["ableton_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: needs a running Ableton Live with the unified Remote Script"]
+addopts = "-m 'not integration'"
